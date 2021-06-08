@@ -1,3 +1,10 @@
 node_modules/
 
 .env
+
+.idea/
+.idea
+
+utilsmailer.log
+.vscode/
+keys/

@@ -4,15 +4,18 @@ const passport = require("passport");
 const dotenv = require("dotenv");
 const cors = require("cors");
 
+const expressValidator = require("express-validator");
+
 dotenv.config();
 const app = express();
 
 /* setting up the express config. */
 app.use(express.json());
-app.use(express.urlencoded({ 
-        extended: false 
+app.use(express.urlencoded({
+    extended: false
 }));
 app.use(cors());
+app.use(expressValidator())
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -28,5 +31,5 @@ const port = process.env.PORT || 3000;
 
 /* starting server. */
 app.listen(port, () => {
-        console.log(`Listening on port ${port}`);
+    console.log(`Listening on port ${port}`);
 });
