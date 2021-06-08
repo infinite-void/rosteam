@@ -15,7 +15,7 @@ const signin = (req, res, next) => {
         // User found
         else {
             // User email not verified
-            if (user.id === null) {
+            if (user.vsalt !== null) {
                 return res.status(400).send({
                     message: "User email not verified. Verification email already sent."
                 })
@@ -28,7 +28,6 @@ const signin = (req, res, next) => {
                 if (hash === user.pwdhash) {
                     return res.status(200).send({
                         message: "Login Successful",
-                        id: user.id,
                         name: user.name,
                         email: user.email,
                         phone: user.phone,

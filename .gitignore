@@ -4,3 +4,7 @@ node_modules/
 
 .idea/
 .idea
+
+utilsmailer.log
+.vscode/
+keys/

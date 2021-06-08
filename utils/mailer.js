@@ -15,9 +15,7 @@ const transport = mailer.createTransport({
     }
 });
 
-const registrationMail = (user) => {
-    const verificationLink = `${process.env.devurl}api/user/verify?token=${getJWT(user.email)}`
-
+const registrationMail = (user, link) => {
     const message = {
         to: user.email,
         subject: "Registration Successful",
@@ -26,7 +24,7 @@ const registrationMail = (user) => {
                 <p>Thanks for registering to <b>Riddles of Sphinx</b> game.</p>
                 <p>Click the below link to verify your email</p>            
                 ` +
-            "<a href=" + verificationLink + ">" + verificationLink + "</a>"
+            "<a href=" + link + ">Click Here!</a>"
 
     }
 

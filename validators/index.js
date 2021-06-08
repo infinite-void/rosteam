@@ -27,10 +27,6 @@ const registerValidator = (req, res, next) => {
         .isLength({min: 8}).withMessage("Password must contain atleast eight characters")
         .trim().escape();
 
-    req.check("cpwd").notEmpty().withMessage("Confirmation Password is required")
-        .isLength({min: 8}).withMessage("Confirmation Password must contain atleast eight characters")
-        .trim().escape();
-
     const errors = req.validationErrors();
 
     if (errors) {
