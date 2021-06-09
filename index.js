@@ -22,9 +22,11 @@ app.use(passport.session());
 
 /* importing required routing modules. */
 const userRoutes = require("./routes/user");
+const rosRoutes = require("./routes/ros");
 
 /* setting the routes. */
 app.use("/api/user", userRoutes);
+app.use("/api/ros", rosRoutes);
 
 const port = process.env.PORT || 3000;
 
