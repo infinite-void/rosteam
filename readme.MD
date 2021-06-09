@@ -14,8 +14,14 @@ produrl = http://localhost:3000/<br>
 GOOGLE_CLIENT_ID = 275671672798-he61gabb7v3oikav843gl37h56nqubu1.apps.googleusercontent.com<br>
 GOOGLE_CLIENT_SECRET = JjwJshwmMsp2J_4E_g8w9O2U<br>
 JWTENCRYPTION = encryptionstring<br>
+HASHALGO = sha256<br>
+PUBLICKEY = /../keys/public.pem<br>
+PRIVATEKEY = /../keys/private.pem<br>
+emailuser = --email--<br>
+emailpass = --app password--<br>
 <br>
 
+add folder keys to root and files public.pem and private.pem with a RSA key pair.<br>
 the user table is normal user table. see models/user.js for schema. Score denotes the score of user and the lastanswer is the timestamp of user's last answer.
 <br>
 <br>
