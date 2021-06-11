@@ -3,11 +3,28 @@ const { questions } = require("../config/questions");
 const User = require("../models").User;
 
 const getQuestion = (req, res, next) => {
-        res.status(200).send({
-                question: questions[req.user.score].question,
-                clue1: questions[req.user.score].clue1,
-                clue2: questions[req.user.score].clue2
-        });
+        try {
+                if(req.user.score >= questions.length) {
+                        return res.status(200).send({
+                                gameOver:true,
+                                message:"Game Over"                                
+                        });
+                }
+                else {
+                        return res.status(200).send({
+                                gameOver:false,
+                                question: questions[req.user.score].question,
+                                clue1: questions[req.user.score].clue1,
+                                clue2: questions[req.user.score].clue2
+                        });
+                }
+        }
+        catch(err) {
+                return res.status(500).send({
+                        message: "Server Error"
+                });
+        }
+
 };
 
 const answer = (req, res, next) => {
@@ -29,7 +46,8 @@ const answer = (req, res, next) => {
                         });
                 } else {
                         return res.status(400).send({
-                                message: "Wrong Answer. Try Again."
+                                message: "Wrong Answer. Try Again.",
+                                score: req.user.score
                         })
                 }
         } catch(err) {
