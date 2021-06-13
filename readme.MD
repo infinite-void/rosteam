@@ -9,8 +9,8 @@ use command "npm start" to run <br>
 
 contents of .env(update when you add env variables to your code.)<br>
 PORT = 3000<br>
-devurl = http://localhost:3000/<br>
-produrl = http://localhost:3000/<br>
+devurl = http://localhost:4000/<br>
+produrl = http://localhost:4000/<br>
 GOOGLE_CLIENT_ID = 275671672798-he61gabb7v3oikav843gl37h56nqubu1.apps.googleusercontent.com<br>
 GOOGLE_CLIENT_SECRET = JjwJshwmMsp2J_4E_g8w9O2U<br>
 JWTENCRYPTION = encryptionstring<br>
@@ -19,6 +19,7 @@ PUBLICKEY = /../keys/public.pem<br>
 PRIVATEKEY = /../keys/private.pem<br>
 emailuser = --email--<br>
 emailpass = --app password--<br>
+EMAILVERIFIEDLINK = http://localhost:3000/account-verified
 <br>
 
 add folder keys to root and files public.pem and private.pem with a RSA key pair.<br>
