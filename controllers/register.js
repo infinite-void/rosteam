@@ -56,7 +56,7 @@ const register = async (req, res, next) => {
                         college: user.college,
                         year: user.year,
                         dept: user.dept
-                    })
+                    }) 
                 } else {
                     return res.status(400).send({ message: "Server Error"})
                 }
@@ -96,16 +96,18 @@ const verify = (req, res, next) => {
                 user.update({
                     vsalt: null
                 }).then((user) => {
-                    return res.status(200).send({
-                        message: "Email verified",
-                        name: user.name,
-                        email: user.email,
-                        phone: user.phone,
-                        college: user.college,
-                        year: user.year,
-                        dept: user.dept,
-                        token: getJWT(user.id)
-                    })
+                    return res.redirect(process.env.EMAILVERIFIEDLINK + url.format({
+                        query: {
+                            message: "Email verified",
+                            name: user.name,
+                            email: user.email,
+                            phone: user.phone,
+                            college: user.college,
+                            year: user.year,
+                            dept: user.dept,
+                            token: getJWT(user.id)    
+                        }
+                    }));
                 }).catch((err) => {
                     return res.status(500).send({ message: "Server Error" })
                 })
