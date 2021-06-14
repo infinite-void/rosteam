@@ -1,0 +1,321 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "Riddle of Sphinx 2021 API",
+      "version": "1.0.0",
+      "title": "K! ROS"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "paths": {
+      "/ros/question": {
+          "get": {
+              "tags": [
+                  "ros"
+              ],
+              "summary": "Get Question for Player",
+              "produces": [
+                  "application/json"
+              ],
+              "responses": {
+                  "200": {
+                      "description": "Successful Retrieval / Game over"
+                  },
+                   "500": {
+                      "description": "Server Error"
+                  }
+              },
+              "security": [
+                  {
+                      "auth" : []
+                  }
+              ]
+          }
+      }, 
+      "/ros/answer": {
+          "post": {
+              "tags": [
+                  "ros"
+              ],
+              "summary": "Check submitted answer",
+              "consumes": [
+                  "application/json"
+              ],
+              "produces": [
+                  "application/json"
+              ],
+              "parameters": [
+                  {
+                      "in": "body",
+                      "name": "body",
+                      "description": "Check player's answer",
+                      "required": true,
+                      "schema": {
+                      "$ref": "#/definitions/PostAnswer"
+                      }
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "Right answer"
+                  },
+                  "400": {
+                      "description": "Wrong answer"
+                  },
+                  "500": {
+                      "description": "Server Error"
+                  }
+              },
+              "security": [
+                  {
+                      "auth" : []
+                  }
+              ]
+          }
+      },
+      "/ros/leaderboard": {
+          "get": {
+              "tags": [
+                  "ros"
+              ],
+              "summary": "Get Leaderboard",
+              "produces": [
+                  "application/json"
+              ],
+              "responses": {
+                  "200": {
+                      "description": "Successful Retrieval of Users"
+                  },
+                  "500": {
+                      "description": "Server Error"
+                  }
+              },
+              "security": [
+                  {
+                      "auth" : []
+                  }
+              ]
+          }
+      },
+      
+      
+      "/user/register": {
+        "post": {
+            "tags": [
+            "user"
+            ],
+            "summary": "User Registration",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "application/json"
+            ],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "description": "Registration of a user",
+                    "required": true,
+                    "schema": {
+                    "$ref": "#/definitions/UserRegister"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Registration. Mail sent"
+                },
+                "403": {
+                    "description": "Already registered"
+                },
+                "500": {
+                    "description": "Server Error"
+                }
+            }
+        }
+    },
+    "/user/signin": {
+        "post": {
+            "tags": [
+                "user"
+            ],
+            "summary": "User Login",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "application/json"
+            ],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "description": "User Login",
+                    "required": true,
+                    "schema": {
+                    "$ref": "#/definitions/UserLogin"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Login"
+                },
+                "400": {
+                    "description": "User email not verified"
+                },
+                "401": {
+                    "description": "User not registered"
+                },
+                "500": {
+                    "description": "Server Error"
+                }
+            }
+        }
+    },
+    "/user/forgotPasswordGenerateLink": {
+        "post": {
+            "tags": [
+                "user"
+            ],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "description": "User Login",
+                    "required": true,
+                    "schema": {
+                    "$ref": "#/definitions/ForgotPasswordGenerateLink"
+                    }
+                }
+            ],
+            "summary": "Generating link to reset password",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "application/json"
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successfully generated link. Mail Sent to registered email"
+                },
+                "401": {
+                    "description": "Cannot generate link for registered email"
+                },
+                "500": {
+                    "description": "Server error"
+                }
+            }
+        }
+    }, 
+    "/user/resetPassword": {
+        "post": {
+            "tags": [
+                "user"
+            ],
+            "summary": "Resets the password",
+            "consumes": [
+                "application/json"
+            ],
+            "produces": [
+                "application/json"
+            ],
+            "parameters": [
+                {
+                    "in": "body",
+                    "name": "body",
+                    "description": "Resets the password",
+                    "required": true,
+                    "schema": {
+                    "$ref": "#/definitions/ResetPassword"
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "description": "Successful Login"
+                },
+                "400": {
+                    "description": "Server error"
+                },
+                "401": {
+                    "description": "User(email) not found"
+                }
+            }
+        }
+    }
+      
+    },
+    "definitions": {
+     "PostAnswer": {
+          "type": "object",
+          "properties": {
+              "answer": {
+                  "type": "string"
+              }
+          }
+      },
+     "UserRegister": {
+        "type": "object",
+        "properties": {
+            "email": {
+                "type": "string"
+            },
+            "name": {
+                "type": "string"
+            },
+            "phone": {
+                "type": "string"
+            },
+             "college": {
+                "type": "string"
+            },
+            "dept": {
+                "type": "string"
+            },
+            "year": {
+                "type": "integer"
+            },
+            "pwd": {
+                "type": "string"
+            }
+        }
+    },
+    "UserLogin": {
+        "type": "object",
+        "properties": {
+            "email": {
+                "type": "string"
+            },
+            "pwd": {
+                "type": "string"
+            }
+        }
+    },
+    "ForgotPasswordGenerateLink": {
+        "type": "object",
+        "properties": {
+            "email": {
+                "type": "string"
+            }
+        }
+    },
+    "ResetPassword": {
+        "type": "object",
+        "properties": {
+            "password": {
+                "type": "string"
+            }
+        }
+      }
+    },
+    "securityDefinitions": {
+        "auth" : {
+            "type": "apiKey",
+            "name": "authorization",
+            "in": "header"
+          }
+      }
+  }

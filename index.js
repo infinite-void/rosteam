@@ -25,11 +25,15 @@ const userRoutes = require("./routes/user");
 const rosRoutes = require("./routes/ros");
 
 /* setting the routes. */
-app.use("/api/user", userRoutes);
-app.use("/api/ros", rosRoutes);
+app.use("/user", userRoutes);
+app.use("/ros", rosRoutes);
 
 const port = process.env.PORT || 3000;
 
+/* swagger doc. */
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 /* starting server. */
 app.listen(port, () => {

@@ -7,6 +7,7 @@ require("../controllers/googleauth.js")(passport);
 /* importing controller modules. */
 const register = require("../controllers/register");
 const login = require("../controllers/login");
+const forgotPassword = require("../controllers/forgot-password");
 const googlesignin = require("../controllers/googlesignin");
 
 /* importing validator module */
@@ -23,6 +24,10 @@ router.get("/googlesignin",
         scope: ["profile", "email"]
     })
 );
+
+router.post("/forgotPasswordGenerateLink",  forgotPassword.generateLink);//, Mailer.sendMailForForgotPassword);
+router.get("/forgotPasswordGetLink", forgotPassword.getLink);
+router.post("/resetPassword",  forgotPassword.resetPassword);
 
 
 /* user end-points for google OAuth. */
